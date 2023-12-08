@@ -12,7 +12,7 @@ data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) 
     
     fun matricular(usuario: Usuario) {
 
-        println("Aluno {${usuario.nome}}, de cpf {${usuario.cpf}}, matriculado em $nome!")
+        println("Aluno ${usuario.nome}, de cpf ${usuario.cpf}, matriculado em $nome!")
         inscritos.add(usuario)
 
     }
@@ -35,11 +35,13 @@ fun main() {
         ConteudoEducacional("PostgreSQL", 90, Nivel.valueOf("INTERMEDIARIO")),
         ConteudoEducacional("Linux", 60, Nivel.valueOf("BASICO"))));
 
+    val formacoes = listOf(backend_com_kotlin, ciencia_de_dados, banco_de_dados);
+
     while(numero != 2)
     {
 
         println("Seja bem-vindo ao Portal de Matriculas!")
-        println("No momento temos as seguintes Formacoes disponiveis para matricula")
+        println("No momento temos as seguintes Formacoes disponiveis para matricula:")
         println("1 - Backend com Kotlin : Kotlin, SpringBoot, Banco de Dados")
         println("2 - Ciencia de Dados: Python, IA, Estatistica Aplicada")
         println("3 - Banco de Dados : SQL, PostgreSQL, Linux")
@@ -62,7 +64,7 @@ fun main() {
 
             val aluno = Usuario(nome, cpf, data_nascimento);
 
-            println("Agora escolha a materia desejada para se matricular.")
+            println("Agora digite o numero da materia desejada para se matricular .")
 
             materia = readLine()!!.toInt();
 
@@ -82,6 +84,16 @@ fun main() {
 
         }else
         {
+            for (formacao in formacoes)
+            {
+                println("Formacao: ${formacao.nome}")
+                for(conteudo in formacao.conteudos)
+                {
+                    println(" - ${conteudo.nome}, ${conteudo.duracao} horas, Nivel: ${conteudo.nivel}")
+                }
+            }
+
+            println("")
 
         }
 
